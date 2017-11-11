@@ -8,6 +8,9 @@ RUN [ "cross-build-start" ]
 
 ADD https://sourceforge.net/projects/leanote-bin/files/2.5/leanote-linux-arm-v${LEANOTE_VERSION}.bin.tar.gz/download /usr/local
 
+RUN tar -xzvf /usr/local/download -C /usr/local && \
+    rm -f /usr/local/download
+
 RUN chmod +x /usr/local/leanote/bin/run.sh
 
 RUN hash=$(< /dev/urandom tr -dc A-Za-z0-9 | head -c${1:-64};echo;); \
